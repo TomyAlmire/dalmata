@@ -1,0 +1,106 @@
+<!--
+  DÁLMATA — Email de confirmación de pedido
+  ══════════════════════════════════════════
+  Cómo usarlo en EmailJS (dashboard.emailjs.com):
+    1. Email Templates → Create New Template.
+    2. Pegá TODO este archivo en el editor de contenido (modo "Code").
+    3. Asunto sugerido: ¡Gracias por tu pedido en DÁLMATA! 🐾
+    4. En "To Email" del template, usá: {{user_email}}
+    5. Copiá el Template ID y pegalo en js/config.local.js como
+       DALMATA_EMAILJS_TEMPLATE_ID.
+  Variables que ya envía el sitio (services/email.js) — no hace falta tocar nada más:
+    {{user_email}}   {{items_html}}   {{total_price}}   {{order_date}}
+-->
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#f2f2f2;padding:32px 0;">
+  <tr>
+    <td align="center">
+      <table role="presentation" width="600" cellpadding="0" cellspacing="0" style="width:600px;max-width:92vw;background:#ffffff;border-radius:20px;overflow:hidden;">
+
+        <!-- Header -->
+        <tr>
+          <td style="background:#0d0d0d;padding:36px 40px;text-align:center;">
+            <div style="font-family:Arial,Helvetica,sans-serif;font-size:26px;font-weight:900;letter-spacing:2px;color:#ffffff;">DÁLMATA</div>
+            <div style="font-family:Arial,Helvetica,sans-serif;font-size:11px;letter-spacing:3px;color:#999999;text-transform:uppercase;margin-top:4px;">custom wear</div>
+          </td>
+        </tr>
+
+        <!-- Cuerpo -->
+        <tr>
+          <td style="padding:40px 40px 8px;font-family:Arial,Helvetica,sans-serif;">
+            <p style="margin:0 0 4px;font-size:12px;letter-spacing:2px;color:#999999;text-transform:uppercase;">¡Gracias por tu compra!</p>
+            <h1 style="margin:0 0 18px;font-size:24px;font-weight:900;color:#111111;letter-spacing:-0.5px;">Recibimos tu pedido</h1>
+            <p style="margin:0 0 28px;font-size:15px;line-height:1.6;color:#444444;">
+              Ya lo estamos preparando. Te escribimos <strong>a este mismo mail</strong> para coordinar el pago y el envío —
+              no manejamos WhatsApp, así que estate atento/a a tu bandeja de entrada (y a spam, por las dudas).
+            </p>
+          </td>
+        </tr>
+
+        <!-- Resumen del pedido -->
+        <tr>
+          <td style="padding:0 40px;">
+            <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="border-top:2px solid #111111;">
+              <tr>
+                <td style="padding:16px 0 4px;font-family:Arial,Helvetica,sans-serif;font-size:12px;letter-spacing:2px;color:#999999;text-transform:uppercase;">
+                  Tu pedido
+                </td>
+              </tr>
+              {{items_html}}
+            </table>
+          </td>
+        </tr>
+
+        <!-- Total -->
+        <tr>
+          <td style="padding:18px 40px 0;">
+            <table role="presentation" width="100%" cellpadding="0" cellspacing="0">
+              <tr>
+                <td style="font-family:Arial,Helvetica,sans-serif;font-size:16px;font-weight:900;color:#111111;padding-top:10px;border-top:2px solid #111111;">
+                  Total
+                </td>
+                <td align="right" style="font-family:Arial,Helvetica,sans-serif;font-size:20px;font-weight:900;color:#111111;padding-top:10px;border-top:2px solid #111111;">
+                  {{total_price}}
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+
+        <!-- Meta del pedido -->
+        <tr>
+          <td style="padding:20px 40px 0;font-family:Arial,Helvetica,sans-serif;font-size:12px;color:#999999;">
+            Pedido registrado el {{order_date}} · confirmación enviada a {{user_email}}
+          </td>
+        </tr>
+
+        <!-- Próximos pasos -->
+        <tr>
+          <td style="padding:28px 40px 40px;">
+            <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#f7f7f7;border-radius:14px;">
+              <tr>
+                <td style="padding:20px 22px;font-family:Arial,Helvetica,sans-serif;font-size:14px;line-height:1.6;color:#333333;">
+                  <strong style="color:#111111;">¿Y ahora?</strong><br>
+                  Te confirmamos disponibilidad y tiempos de producción por mail. Si tu pedido incluye una estampa
+                  personalizada en DTF, puede llevar un poco más de tiempo — vale la pena.
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+
+        <!-- Footer -->
+        <tr>
+          <td style="background:#0d0d0d;padding:28px 40px;text-align:center;">
+            <a href="https://www.instagram.com/dalmataok/" style="font-family:Arial,Helvetica,sans-serif;font-size:13px;color:#ffffff;text-decoration:none;letter-spacing:1px;">
+              @dalmataok
+            </a>
+            <p style="margin:10px 0 0;font-family:Arial,Helvetica,sans-serif;font-size:11px;color:#666666;">
+              Zona sur / CABA · Envíos a todo el país
+            </p>
+          </td>
+        </tr>
+
+      </table>
+    </td>
+  </tr>
+</table>

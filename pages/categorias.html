@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Categorías | DÁLMATA</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=Archivo:wght@700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/styles.css">
+  <link rel="stylesheet" href="../css/catalog-premium.css">
+  <link rel="stylesheet" href="../css/shirt-viewer.css">
+
+  <!-- GSAP para animaciones -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js" defer></script>
+  <!-- Mockup 3D en vivo -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" defer></script>
+  
+  <style>
+    .categories-container {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: center;
+      padding: 120px 20px 60px;
+      background: #000;
+    }
+    
+    .categories-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 30px;
+      max-width: 1200px;
+      width: 100%;
+    }
+    
+    @media (max-width: 900px) {
+      .categories-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+    
+    .category-card-large {
+      height: 600px;
+      border-radius: 40px;
+      overflow: hidden;
+      position: relative;
+      cursor: pointer;
+      text-decoration: none;
+      transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    
+    .category-card-large:hover {
+      transform: translateY(-10px);
+    }
+    
+    .category-card-large .category-bg {
+      position: absolute;
+      inset: 0;
+      background-size: cover;
+      background-position: center;
+      transition: transform 0.8s ease;
+      filter: brightness(0.7);
+    }
+    
+    .category-card-large:hover .category-bg {
+      transform: scale(1.1);
+      filter: brightness(0.9);
+    }
+    
+    .category-card-large .category-content {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      padding: 50px 40px;
+      z-index: 2;
+      background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);
+    }
+    
+    .category-card-large h2 {
+      color: #fff;
+      font-size: 3rem;
+      font-weight: 900;
+      margin: 0;
+      letter-spacing: -0.02em;
+      line-height: 1;
+    }
+    
+    .category-card-large span {
+      color: #fff;
+      opacity: 0.6;
+      font-size: 0.9rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      margin-top: 10px;
+      display: block;
+    }
+  </style>
+</head>
+<body data-page="categorias">
+  <div class="background-noise"></div>
+
+  <!-- Menú lateral -->
+  <aside class="side-menu" id="sideMenu" aria-hidden="true">
+    <div class="side-menu-panel">
+      <div class="side-menu-head">
+        <button class="side-menu-close" id="closeMenuButton" type="button" aria-label="Cerrar menu">×</button>
+      </div>
+      <nav class="side-menu-nav">
+        <a href="../index.html">Inicio</a>
+        <a href="./productos.html">Productos <span>→</span></a>
+        <a href="./contacto.html">Contacto</a>
+        <a href="./guia-de-talles.html">Guía de talles</a>
+        <a href="./quienes-somos.html">Quiénes Somos</a>
+        <a href="./politica-de-devolucion.html">Política de Devolución</a>
+        <a href="./cuidados.html">Cuidados para tu prenda</a>
+      </nav>
+    </div>
+    <button class="side-menu-backdrop" id="menuBackdrop" type="button" aria-label="Cerrar menu"></button>
+  </aside>
+
+  <!-- Header -->
+  <header class="site-header">
+    <button class="menu-trigger" id="openMenuButton" type="button">☰</button>
+    <a class="brand" href="../index.html"><span class="brand-badge">DM</span><span class="brand-name">DÁLMATA</span></a>
+    <nav class="main-nav">
+      <a href="./categorias.html" class="active">CATÁLOGO</a>
+      <a href="./contacto.html">CONTACTO</a>
+    </nav>
+    <a class="cta-top" href="./productos.html#carrito">TIENDA <span id="cartCountHeader">0</span></a>
+  </header>
+
+  <main class="categories-container">
+    <div class="catalog-header" style="width: 100%; max-width: 1200px; margin-bottom: 40px;">
+      <div class="catalog-title">
+        <p class="premium-kicker">EXPLORAR</p>
+        <h2 style="color: #fff; font-size: 2.5rem; font-weight: 900;">Categorías</h2>
+      </div>
+      <div class="catalog-filters">
+        <div class="search-box">
+          <input type="text" id="catalogSearch" placeholder="Buscar en catálogo...">
+        </div>
+        <button class="filter-pill is-active" data-filter="all">Todas</button>
+        <button class="filter-pill" data-filter="remera">Remeras</button>
+        <button class="filter-pill" data-filter="buzo">Buzos</button>
+        <button class="filter-pill" data-filter="tote-bag">Tote Bags</button>
+      </div>
+    </div>
+
+    <!-- Grid de Productos (se llena vía JS cuando hay filtro) -->
+    <div class="premium-sections" id="premiumProductGrid" style="width: 100%; max-width: 1200px;"></div>
+
+    <!-- Grid de Categorías Principal -->
+    <div class="categories-grid" id="mainCategoriesGrid">
+      <!-- REMERAS -->
+      <a href="?filter=remera" class="category-card-large">
+        <div class="category-bg" style="background-image: url('../assets/products/dalmata-original.jpg')"></div>
+        <div class="category-content">
+          <h2>REMERAS</h2>
+          <span>COLECCIÓN</span>
+        </div>
+      </a>
+      
+      <!-- BUZOS -->
+      <a href="?filter=buzo" class="category-card-large">
+        <div class="category-bg" style="background-image: url('../assets/products/pastillas-ferro.jpg')"></div>
+        <div class="category-content">
+          <h2>BUZOS</h2>
+          <span>NEW DROP</span>
+        </div>
+      </a>
+      
+      <!-- TOTE BAGS -->
+      <a href="?filter=tote-bag" class="category-card-large">
+        <div class="category-bg" style="background-image: url('../assets/products/friends-brides.jpg')"></div>
+        <div class="category-content">
+          <h2>TOTE BAGS</h2>
+          <span>ACCESORIOS</span>
+        </div>
+      </a>
+    </div>
+  </main>
+
+  <!-- Carrito Lateral (Overlay) -->
+  <div class="cart-overlay-backdrop" id="cartBackdrop"></div>
+  <aside class="cart-overlay" id="cartOverlay">
+    <div class="cart-overlay-header">
+      <h3>TU PEDIDO</h3>
+      <button class="close-cart-btn" id="closeCartOverlay">×</button>
+    </div>
+    <div class="cart-overlay-content js-cart-items" id="cartItems">
+      <!-- Los items se inyectan por JS -->
+    </div>
+    <div class="cart-overlay-footer">
+      <div class="cart-total-row">
+        <span>Total</span>
+        <strong class="js-cart-subtotal" id="cartSubtotal">$0</strong>
+      </div>
+      <button class="checkout-btn js-checkout-btn" type="button" style="width: 100%; height: 60px;">FINALIZAR COMPRA</button>
+      <button class="clear-cart-btn js-clear-cart-btn" type="button" style="width: 100%; margin-top: 15px; background: none; border: none; text-decoration: underline; cursor: pointer; color: #999;">Vaciar Carrito</button>
+    </div>
+  </aside>
+
+  <!-- Scripts clásicos (no módulos): funcionan también con file:// -->
+  <script src="../js/config.local.js"></script>
+  <script src="../data/products.js" defer></script>
+  <script src="../data/product-textures.js" defer></script>
+  <script src="../js/utils.js" defer></script>
+  <script src="../lib/catalog-access.js" defer></script>
+  <script src="../services/auth.js" defer></script>
+  <script src="../services/catalog.js" defer></script>
+  <script src="../services/orders.js" defer></script>
+  <script src="../services/email.js" defer></script>
+  <script src="../js/ui.js" defer></script>
+  <script src="../js/cart.js" defer></script>
+  <script src="../js/app.js" defer></script>
+  <script src="../js/shirt-viewer.js" defer></script>
+  <script src="../js/catalog-premium.js" defer></script>
+</body>
+</html>

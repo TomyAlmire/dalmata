@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="DÁLMATA — remeras y custom wear con editor 3D y catálogo en vivo. Diseñá tu marca o elegí del stock.">
+  <meta name="theme-color" content="#090909">
+  <title>DÁLMATA — Custom wear & catálogo</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=Archivo:wght@700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./css/styles.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js" defer></script>
+</head>
+<body data-page="inicio">
+  <!-- Loader Premium -->
+  <div id="premiumLoader" class="premium-loader">
+    <div class="loader-logo">DÁLMATA</div>
+    <div class="loader-bar">
+      <div class="loader-progress"></div>
+    </div>
+  </div>
+
+  <div class="background-noise"></div>
+
+  <aside class="side-menu" id="sideMenu" aria-hidden="true">
+    <div class="side-menu-panel">
+      <div class="side-menu-head">
+        <button class="side-menu-close" id="closeMenuButton" type="button" aria-label="Cerrar menu">×</button>
+      </div>
+      <nav class="side-menu-nav">
+        <a href="./index.html">Inicio</a>
+        <a href="./pages/productos.html">Productos <span>→</span></a>
+        <a href="./pages/contacto.html">Contacto</a>
+        <a href="./pages/guia-de-talles.html">Guía de talles</a>
+        <a href="./pages/quienes-somos.html">Quiénes Somos</a>
+        <a href="./pages/politica-de-devolucion.html">Política de Devolución</a>
+        <a href="./pages/cuidados.html">Cuidados para tu prenda</a>
+      </nav>
+    </div>
+    <button class="side-menu-backdrop" id="menuBackdrop" type="button" aria-label="Cerrar menu"></button>
+  </aside>
+
+  <header class="site-header">
+    <button class="menu-trigger" id="openMenuButton" type="button">☰</button>
+    <a class="brand brand-landing" href="./index.html" aria-label="DÁLMATA inicio">
+      <span class="brand-badge" aria-hidden="true">DM</span>
+      <span class="brand-stack">
+        <span class="brand-name">DÁLMATA</span>
+        <span class="brand-tagline">custom wear</span>
+      </span>
+    </a>
+    <nav class="main-nav">
+      <a href="./pages/categorias.html">CATÁLOGO</a>
+      <a href="./pages/contacto.html">CONTACTO</a>
+    </nav>
+    <a class="cta-top" href="./pages/productos.html">
+      TIENDA <span id="cartCountHeader">0</span>
+    </a>
+  </header>
+
+  <main id="top">
+    <section class="hero page-hero">
+      <div class="hero-aurora" aria-hidden="true"></div>
+      <div class="hero-grid-lines" aria-hidden="true"></div>
+      <div class="floating-pill pill-left"></div>
+      <div class="floating-pill pill-right"></div>
+      <div class="floating-pill pill-bottom-left"></div>
+      <div class="floating-pill pill-bottom-right"></div>
+
+      <div class="hero-logo orbit-float"><span>DM</span></div>
+
+      <div class="hero-copy reveal-up">
+        <p class="hero-kicker"><span class="hero-kicker-dot" aria-hidden="true"></span> Hecho para equipos y marcas personales</p>
+        <h1>TU DISEÑO.</h1>
+        <div class="hero-shadow-word">DALMATA</div>
+        <h2>TU MARCA.</h2>
+        <p class="hero-description">
+          Remeras premium, mockup 3D en vivo y catálogo con stock real.
+          Menos plantilla genérica: más textura, contraste y una tienda que se siente editorial.
+        </p>
+        <div class="hero-actions">
+          <a class="btn btn-dark" href="./pages/productos.html">VER CATÁLOGO</a>
+          <a class="btn btn-light" href="./pages/contacto.html">CONTACTO</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="ticker" aria-label="Sellos de marca">
+      <div class="ticker-track">
+        <span>DÁLMATA</span>
+        <span>CATÁLOGO EN VIVO</span>
+        <span>ALGODÓN PREMIUM</span>
+        <span>EDITOR 3D</span>
+        <span>MOCKUP EN VIVO</span>
+        <span>STOCK Y ENVÍOS</span>
+        <span>DÁLMATA</span>
+        <span>CATÁLOGO EN VIVO</span>
+        <span>ALGODÓN PREMIUM</span>
+        <span>EDITOR 3D</span>
+        <span>MOCKUP EN VIVO</span>
+        <span>STOCK Y ENVÍOS</span>
+      </div>
+    </section>
+
+    <section class="home-catalog-preview land-reveal page-shell" aria-labelledby="home-catalog-heading">
+      <header class="section-heading section-heading--tight">
+        <p class="hero-kicker">Catálogo</p>
+        <h2 id="home-catalog-heading">Piezas disponibles ahora</h2>
+        <span>Mismo stock que en la tienda: entrá al catálogo completo y encontrá lo que buscás.</span>
+      </header>
+      <div class="home-preview-grid" id="homePreviewGrid"></div>
+      <div class="hero-actions" style="margin-top: 28px; justify-content: center;">
+        <a class="btn btn-dark" href="./pages/productos.html">VER CATÁLOGO COMPLETO</a>
+      </div>
+    </section>
+
+    <section class="testimonials-section land-reveal" aria-labelledby="testimonials-heading">
+      <div class="page-shell testimonials-inner">
+        <header class="section-heading section-heading--tight">
+          <p class="hero-kicker">Clientes</p>
+          <h2 id="testimonials-heading">Lo que dicen quienes ya vistieron la marca</h2>
+          <span>Proyectos reales: estudios, eventos y marcas personales que necesitaban remeras con criterio.</span>
+        </header>
+        <div class="testimonials-grid">
+          <blockquote class="testimonial-card">
+            <p class="testimonial-quote">“La calidad de las remeras es de otro nivel. El algodón es pesado y la estampa no se siente al tacto.”</p>
+            <footer>
+              <span class="testimonial-avatar" aria-hidden="true">ML</span>
+              <div>
+                <cite class="testimonial-name">Marina L.</cite>
+                <p class="testimonial-role">Estudio de diseño, CABA</p>
+              </div>
+            </footer>
+          </blockquote>
+          <blockquote class="testimonial-card">
+            <p class="testimonial-quote">“Pedimos merch para un festival chico: calidad de tela y estampa se notó al tacto. Volveríamos para el próximo pedido.”</p>
+            <footer>
+              <span class="testimonial-avatar" aria-hidden="true">TR</span>
+              <div>
+                <cite class="testimonial-name">Tomás R.</cite>
+                <p class="testimonial-role">Producción de eventos</p>
+              </div>
+            </footer>
+          </blockquote>
+          <blockquote class="testimonial-card">
+            <p class="testimonial-quote">“Buscaba algo minimalista y de buena calidad para mi marca. El catálogo tiene piezas increíbles.”</p>
+            <footer>
+              <span class="testimonial-avatar" aria-hidden="true">SM</span>
+              <div>
+                <cite class="testimonial-name">Sofía M.</cite>
+                <p class="testimonial-role">Marca personal &amp; contenido</p>
+              </div>
+            </footer>
+          </blockquote>
+        </div>
+      </div>
+    </section>
+
+    <section class="home-grid page-shell">
+      <article class="home-card reveal-up">
+        <p>01</p>
+        <h3>Catálogo Premium</h3>
+        <span>Productos con stock real, fotos de alta calidad y envío rápido.</span>
+      </article>
+      <article class="home-card reveal-up stagger-1">
+        <p>02</p>
+        <h3>Envíos a todo el país</h3>
+        <span>Llegamos a donde estés con los mejores tiempos de entrega.</span>
+      </article>
+      <article class="home-card reveal-up stagger-2">
+        <p>03</p>
+        <h3>Menú lateral</h3>
+        <span>Panel izquierdo limpio: catálogo, contacto, guía de talles y políticas en un solo gesto.</span>
+      </article>
+    </section>
+
+    <section class="landing-cta land-reveal page-shell" aria-label="Llamado a la acción">
+      <div class="landing-cta-inner">
+        <p class="landing-cta-kicker">DÁLMATA</p>
+        <h2 class="landing-cta-title">¿Pedido puntual o merch para tu equipo?</h2>
+        <p class="landing-cta-text">Escribinos por mayor, colaboraciones o tiempos de producción.</p>
+        <div class="hero-actions landing-cta-actions">
+          <a class="btn btn-dark" href="./pages/contacto.html">CONTACTO</a>
+          <a class="btn btn-light" href="./pages/quienes-somos.html">QUIÉNES SOMOS</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Carrito Lateral (Overlay) -->
+  <div class="cart-overlay-backdrop" id="cartBackdrop"></div>
+  <aside class="cart-overlay" id="cartOverlay">
+    <div class="cart-overlay-header">
+      <h3>TU PEDIDO</h3>
+      <button class="close-cart-btn" id="closeCartOverlay">×</button>
+    </div>
+    <div class="cart-overlay-content js-cart-items" id="cartItems">
+      <!-- Los items se inyectan por JS -->
+    </div>
+    <div class="cart-overlay-footer">
+      <div class="cart-total-row">
+        <span>Total</span>
+        <strong class="js-cart-subtotal" id="cartSubtotal">$0</strong>
+      </div>
+      <button class="checkout-btn js-checkout-btn" type="button" style="width: 100%; height: 60px;">FINALIZAR COMPRA</button>
+      <button class="clear-cart-btn js-clear-cart-btn" type="button" style="width: 100%; margin-top: 15px; background: none; border: none; text-decoration: underline; cursor: pointer; color: #999;">Vaciar Carrito</button>
+    </div>
+  </aside>
+
+  <!-- Supabase & EmailJS Config -->
+  <script src="./js/config.local.js"></script>
+  <!-- Scripts clásicos (no módulos): funcionan también con file:// -->
+  <script src="./data/products.js" defer></script>
+  <script src="./js/utils.js" defer></script>
+  <script src="./lib/catalog-access.js" defer></script>
+  <script src="./services/auth.js" defer></script>
+  <script src="./services/catalog.js" defer></script>
+  <script src="./services/orders.js" defer></script>
+  <script src="./services/email.js" defer></script>
+  <script src="./js/ui.js" defer></script>
+  <script src="./js/cart.js" defer></script>
+  <script src="./js/loader-boot.js" defer></script>
+  <script src="./js/home-landing.js" defer></script>
+  <script src="./js/app.js" defer></script>
+  <script src="./js/home-catalog.js" defer></script>
+</body>
+</html>

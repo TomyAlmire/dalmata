@@ -1,0 +1,228 @@
+/* ── Visor 3D (mockup en vivo) ───────────────────────── */
+
+.shirt3d-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  background: rgba(6, 6, 6, 0.78);
+  backdrop-filter: blur(6px);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s ease;
+}
+
+.shirt3d-overlay.is-open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.shirt3d-modal {
+  position: relative;
+  width: min(920px, 100%);
+  max-height: 90vh;
+  overflow: auto;
+  background: #0d0d0d;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 28px;
+  padding: 28px;
+  transform: translateY(16px) scale(0.98);
+  transition: transform 0.25s ease;
+}
+
+.shirt3d-overlay.is-open .shirt3d-modal {
+  transform: translateY(0) scale(1);
+}
+
+.shirt3d-close {
+  position: absolute;
+  top: 18px;
+  right: 18px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  background: rgba(255, 255, 255, 0.06);
+  color: #fff;
+  font-size: 22px;
+  line-height: 1;
+  cursor: pointer;
+  z-index: 2;
+}
+
+.shirt3d-body {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: 32px;
+  align-items: center;
+}
+
+.shirt3d-canvas-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.shirt3d-canvas {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  max-width: 420px;
+  border-radius: 20px;
+  background: radial-gradient(circle at 50% 35%, rgba(255, 255, 255, 0.07), rgba(255, 255, 255, 0) 60%);
+  cursor: grab;
+}
+
+.shirt3d-canvas:active {
+  cursor: grabbing;
+}
+
+.shirt3d-canvas canvas {
+  border-radius: 20px;
+  display: block;
+}
+
+.shirt3d-hint {
+  margin: 0;
+  font-size: 0.78rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.4);
+}
+
+.shirt3d-info {
+  color: #fff;
+}
+
+.shirt3d-kicker {
+  margin: 0 0 6px;
+  font-size: 0.78rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.shirt3d-name {
+  margin: 0 0 6px;
+  font-size: 1.6rem;
+  font-weight: 800;
+  line-height: 1.1;
+}
+
+.shirt3d-price {
+  margin: 0 0 22px;
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.shirt3d-field {
+  margin-bottom: 20px;
+}
+
+.shirt3d-field > span {
+  display: block;
+  margin-bottom: 10px;
+  font-size: 0.78rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.shirt3d-colors {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.shirt3d-swatch {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: 2px solid rgba(255, 255, 255, 0.25);
+  cursor: pointer;
+  padding: 0;
+}
+
+.shirt3d-swatch.is-active {
+  border-color: #fff;
+  box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.25);
+}
+
+.shirt3d-sides {
+  display: flex;
+  gap: 8px;
+}
+
+.shirt3d-side {
+  padding: 8px 16px;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: transparent;
+  color: #fff;
+  cursor: pointer;
+  font-size: 0.85rem;
+}
+
+.shirt3d-side.is-active {
+  background: #fff;
+  color: #0d0d0d;
+  border-color: #fff;
+  font-weight: 700;
+}
+
+.shirt3d-sizes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.shirt3d-size {
+  min-width: 42px;
+  padding: 8px 12px;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: transparent;
+  color: #fff;
+  cursor: pointer;
+  font-size: 0.85rem;
+}
+
+.shirt3d-size.is-active {
+  background: #fff;
+  color: #0d0d0d;
+  border-color: #fff;
+  font-weight: 700;
+}
+
+.shirt3d-add-btn {
+  width: 100%;
+  height: 54px;
+  border-radius: 14px;
+  border: none;
+  background: #fff;
+  color: #0d0d0d;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.premium-btn.view-3d {
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  color: #fff;
+}
+
+@media (max-width: 720px) {
+  .shirt3d-body {
+    grid-template-columns: 1fr;
+  }
+  .shirt3d-modal {
+    padding: 20px;
+    border-radius: 20px;
+  }
+}

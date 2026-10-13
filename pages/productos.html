@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Catálogo Premium | Dalmata Store</title>
+  
+  <!-- Preconnect y Fuentes -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=Archivo:wght@700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- CSS Principal y Premium -->
+  <link rel="stylesheet" href="../css/styles.css">
+  <link rel="stylesheet" href="../css/catalog-premium.css">
+  <link rel="stylesheet" href="../css/shirt-viewer.css">
+
+  <!-- Animaciones ligeras -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js" defer></script>
+  <!-- Mockup 3D en vivo -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" defer></script>
+</head>
+<body data-page="productos-premium">
+  
+  <div class="background-noise"></div>
+  
+  <!-- Menú lateral existente -->
+  <aside class="side-menu" id="sideMenu" aria-hidden="true">
+    <div class="side-menu-panel">
+      <div class="side-menu-head"><button class="side-menu-close" id="closeMenuButton" type="button" aria-label="Cerrar menu">×</button></div>
+      <nav class="side-menu-nav">
+        <a href="../index.html">Inicio</a>
+        <a href="./productos.html">Productos <span>→</span></a>
+        <a href="./contacto.html">Contacto</a>
+        <a href="./guia-de-talles.html">Guía de talles</a>
+        <a href="./quienes-somos.html">Quiénes Somos</a>
+        <a href="./politica-de-devolucion.html">Política de Devolución</a>
+        <a href="./cuidados.html">Cuidados para tu prenda</a>
+      </nav>
+    </div>
+    <button class="side-menu-backdrop" id="menuBackdrop" type="button" aria-label="Cerrar menu"></button>
+  </aside>
+
+  <!-- Header -->
+  <header class="site-header">
+    <button class="menu-trigger" id="openMenuButton" type="button">☰</button>
+    <a class="brand" href="../index.html"><span class="brand-badge">DM</span><span class="brand-name">DÁLMATA</span></a>
+    <nav class="main-nav">
+      <a href="./categorias.html">CATÁLOGO</a>
+      <a href="./contacto.html">CONTACTO</a>
+    </nav>
+    <a class="cta-top" href="#carrito">CARRITO <span id="cartCountHeader">0</span></a>
+  </header>
+
+  <!-- Premium Catalog -->
+  <section class="premium-catalog">
+    <div class="catalog-header">
+      <div class="catalog-title">
+        <p class="premium-kicker">COLECCIÓN PREMIUM</p>
+        <h2>Stock Disponible</h2>
+      </div>
+      <div class="catalog-filters">
+        <div class="search-box">
+          <input type="text" id="catalogSearch" placeholder="Buscar productos...">
+        </div>
+        <button class="filter-pill is-active" data-filter="all">Todos</button>
+        <button class="filter-pill" data-filter="remera">Remeras</button>
+        <button class="filter-pill" data-filter="buzo">Buzos</button>
+        <button class="filter-pill" data-filter="tote-bag">Tote Bags</button>
+      </div>
+    </div>
+
+    <div class="catalog-layout">
+      <!-- Contenedor inyectado por JS Premium -->
+      <div class="premium-sections" id="premiumProductGrid">
+        <!-- Renderizado dinámicamente -->
+      </div>
+    </div>
+  </section>
+
+  <!-- Carrito Lateral (Overlay) -->
+  <div class="cart-overlay-backdrop" id="cartBackdrop"></div>
+  <aside class="cart-overlay" id="cartOverlay">
+    <div class="cart-overlay-header">
+      <h3>TU PEDIDO</h3>
+      <button class="close-cart-btn" id="closeCartOverlay">×</button>
+    </div>
+    <div class="cart-overlay-content js-cart-items" id="cartItemsOverlay">
+      <!-- Los items se inyectan por JS -->
+    </div>
+    <div class="cart-overlay-footer">
+      <div class="cart-total-row">
+        <span>Total</span>
+        <strong class="js-cart-subtotal" id="cartSubtotalOverlay">$0</strong>
+      </div>
+      <button class="checkout-btn js-checkout-btn" type="button" style="width: 100%; height: 60px;">FINALIZAR COMPRA</button>
+      <button class="clear-cart-btn js-clear-cart-btn" type="button" style="width: 100%; margin-top: 15px; background: none; border: none; text-decoration: underline; cursor: pointer; color: #999;">Vaciar Carrito</button>
+    </div>
+  </aside>
+
+  <!-- Supabase & EmailJS Config -->
+  <script src="../js/config.local.js"></script>
+  <!-- Scripts clásicos (no módulos): funcionan también con file:// -->
+  <script src="../data/products.js" defer></script>
+  <script src="../data/product-textures.js" defer></script>
+  <script src="../js/utils.js" defer></script>
+  <script src="../lib/catalog-access.js" defer></script>
+  <script src="../services/auth.js" defer></script>
+  <script src="../services/catalog.js" defer></script>
+  <script src="../services/orders.js" defer></script>
+  <script src="../services/email.js" defer></script>
+  <script src="../js/ui.js" defer></script>
+  <script src="../js/cart.js" defer></script>
+  <script src="../js/app.js" defer></script>
+  <script src="../js/shirt-viewer.js" defer></script>
+  <script src="../js/catalog-premium.js" defer></script>
+</body>
+</html>
